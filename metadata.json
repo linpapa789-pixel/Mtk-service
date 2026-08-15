@@ -1,0 +1,8 @@
+{
+  "name": "MTK & ESP32 Workshop Pro",
+  "description": "ESP32-S3 N16R8 Coprocessor Firmware (16MB Flash, 8MB Octal PSRAM), GitHub Actions CI/CD workflow, and Android MTK BROM/Fastboot Flasher Workshop.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

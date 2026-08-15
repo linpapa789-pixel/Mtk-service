@@ -1,11 +1,47 @@
-<div align="center">
+# MTK & ESP32 Workshop Pro
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+**MTK & ESP32 Workshop Pro** is a mobile phone software servicing toolkit and ESP32-S3 hardware coprocessor bridge for MediaTek (MTK) BROM/Preloader exploits, Bootloader Unlocking, NVRAM/IMEI repair, and partition flashing.
 
-  <h1>Built with AI Studio</h2>
+---
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+## 🚀 Features
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+- **MediaTek BROM Service Suite**:
+  - 1-Click Instant Bootloader Unlock (`seccfg` patch)
+  - Xiaomi Mi Account & Cloud Lock Reset
+  - FRP / Google Account Wipe
+  - Userdata Wipe / Screen Lock removal
+  - NVRAM / NVDATA Backup, Restore, and Dual-IMEI Repair
+  - eMMC / UFS Life-Time & Health Inspection (`EXT_CSD`)
+  - Custom Download Agent (DA) & Preloader Selector
 
-</div>
+- **ESP32-S3 N16R8 Coprocessor Bridge (`firmware/`)**:
+  - 16MB Flash (QIO 80MHz) & 8MB Octal PSRAM (OPI)
+  - Microsecond / Nanosecond Hardware Glitch Pulse Generator (GPIO 4) for SLA/DAA Security Bypass
+  - Dual Bridge: WiFi SoftAP (`192.168.4.1:8080`) & Native USB-OTG CDC
+  - Live SSD1306 OLED Telemetry & WS2812 RGB Status LED
+
+- **Automated CI/CD Workflow (`.github/workflows/build.yml`)**:
+  - Automatically compiles Android APK (`release` and `debug`)
+  - Automatically compiles ESP32-S3 Firmware via PlatformIO
+  - Merges binary into `esp32s3_n16r8_firmware_merged.bin` at offset `0x00000000`
+
+---
+
+## 🛠️ How to Build
+
+### 1. Android APK
+```bash
+./gradlew assembleRelease
+```
+
+### 2. ESP32-S3 Firmware
+```bash
+cd firmware
+pio run
+```
+
+---
+
+## 📄 License
+Open source under Apache License 2.0.
