@@ -27,10 +27,16 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: gradle
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew || true
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Ensure Gradle Wrapper exists
+        run: |
+          if [ ! -f "gradlew" ]; then
+            gradle wrapper
+          fi
+          chmod +x gradlew
 
       - name: Create .env placeholder for Build
         run: |
@@ -41,7 +47,7 @@ jobs:
         run: ./gradlew assembleDebug --stacktrace --no-daemon
 
       - name: Build Android Release APK (or Debug if no keystore)
-        run: ./gradlew assembleRelease --stacktrace --no-daemon || true
+        run: ./gradlew assembleRelease --stacktrace --no-daemon || ./gradlew assembleDebug --stacktrace --no-daemon
 
       - name: Locate and Rename APKs
         run: |
