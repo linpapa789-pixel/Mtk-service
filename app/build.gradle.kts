@@ -1,7 +1,8 @@
-import com.google.gms.googleservices.GoogleServicesPlugin.MissingGoogleServicesStrategy
+import com.google.gms.googleservices.GoogleServicesPlugin.MissingGoogleServicesStrategy // 🟢 'Import' အစား 'import' အသေးပြောင်းထားပါတယ်
 
 plugins {
   alias(libs.plugins.android.application)
+  alias(libs.plugins.kotlin.android) // 🟢 ဒါလေး အသစ်ထည့်ထားပါတယ်
   alias(libs.plugins.kotlin.compose)
   alias(libs.plugins.google.devtools.ksp)
   alias(libs.plugins.roborazzi)
@@ -11,6 +12,9 @@ plugins {
 
 android {
   namespace = "com.example"
+  
+  // မှတ်ချက် - 'compileSdk { version = release(36) { minorApiLevel = 1 } }' လို့ရေးတာ Error တက်ခဲ့ရင် 
+  // 'compileSdk = 36' လို့သာ ရိုးရိုးလေး ပြောင်းရေးပေးပါ။
   compileSdk { version = release(36) { minorApiLevel = 1 } }
 
   defaultConfig {
@@ -48,10 +52,16 @@ android {
     }
     debug { signingConfig = signingConfigs.getByName("debugConfig") }
   }
+  
   compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_17 // 🟢 11 မှ 17 သို့ ပြောင်းထားပါတယ်
+    targetCompatibility = JavaVersion.VERSION_17 // 🟢 11 မှ 17 သို့ ပြောင်းထားပါတယ်
   }
+  
+  kotlinOptions { // 🟢 Kotlin အတွက် 17 ထပ်ထည့်ပေးထားပါတယ်
+    jvmTarget = "17"
+  }
+  
   buildFeatures {
     compose = true
     buildConfig = true
